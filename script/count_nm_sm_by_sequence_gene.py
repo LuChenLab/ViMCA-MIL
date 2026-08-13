@@ -73,7 +73,10 @@ def classify_nm_sm(ref_aa, alt_aa):
 
 
 def build_ref_coordinate_map(ref_aligned):
-
+    """
+    alignment column -> reference coordinate.
+    Columns that are gaps in the reference are marked as -1.
+    """
     aln_to_ref_pos = []
     ref_pos = 0
     ref_ungapped = []
@@ -90,7 +93,16 @@ def build_ref_coordinate_map(ref_aligned):
 
 
 def load_features(feature_tsv):
+    """
+    The feature file must contain the columns:
+    feature, start, end, ORF, gene
 
+    A single gene may consist of multiple segments, e.g. nsp12:
+    nsp12 13442-13468
+    nsp12 13468-16236
+
+    All segments of the same gene are concatenated in file order.
+    """
     df = pd.read_csv(feature_tsv, sep="\t")
 
     required = {"feature", "start", "end", "ORF", "gene"}
@@ -121,7 +133,14 @@ def load_features(feature_tsv):
 
 
 def build_coding_context(ref_ungapped, features):
+    """
+    ref_pos_to_contexts[ref_pos] = list of contexts.
 
+    A list is used to allow:
+    1. the nsp11 / nsp12 overlap
+    2. the nsp12 frameshift (position 13468 is reused in the nsp12 transcript)
+    3. the ORF7a / ORF7b overlap
+    """
     ref_pos_to_contexts = defaultdict(list)
 
     for feat in features:
@@ -329,7 +348,7 @@ def main():
                     elif cls == "Sm":
                         seq_counts[gene]["Sm"] += 1
                     else:
-                        # 无法分类的 codon 不计入 Nm/Sm
+                        # Codons that cannot be classified are not counted as Nm/Sm
                         pass
 
             if args.include_zero_genes:

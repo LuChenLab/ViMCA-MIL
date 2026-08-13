@@ -6,7 +6,10 @@ output: html_document
 
 #relative fitness
 ```{bash}
-cd /mnt/raid66/Personal_data/linghukepan/03proj/06COVID19/upload_version1/data/relative_fitness/pyr0
+# Run in a PyR0 working directory containing the cloned pyro scripts
+# (script/preprocess_usher.py, script/mutrans.py) and the UShER tree inputs
+# (see README "Data not included"). Results are written to ./results/.
+cd ../data/relative_fitness/pyr0
 python ./script/preprocess_usher.py \
 --usher-metadata-file-in ./data/metadata_usher.tsv \
 --nextstrain-metadata-file-in ./data/nextstrain_metadata.tsv \
@@ -32,17 +35,17 @@ convert_mutation <- function(mut, orf1a_end = 4401, offset = NULL, nsp_table = n
   }
   
   parts <- strsplit(mut, ":")[[1]]
-  if (length(parts) != 2) stop("格式应为 ORF1a:XXX 或 ORF1b:XXX")
+  if (length(parts) != 2) stop("Format should be ORF1a:XXX or ORF1b:XXX")
   orf <- toupper(parts[1])
   aa  <- parts[2]
   pos <- as.numeric(gsub("[^0-9]", "", aa))
-  if (is.na(pos)) stop("无法解析位置")
+  if (is.na(pos)) stop("Cannot parse position")
   
   if (orf == "ORF1A") {
     poly_pos <- pos
   } else if (orf == "ORF1B") {
     poly_pos <- orf1a_end + pos
-  } else stop("只支持 ORF1a 或 ORF1b")
+  } else stop("Only ORF1a or ORF1b is supported")
   
   hits <- nsp_table[nsp_table$poly_start <= poly_pos & nsp_table$poly_end >= poly_pos, ]
   if (nrow(hits) == 0) return(NA)
@@ -94,6 +97,11 @@ ggsave("../result/02Fitness_analysis/relative_fitness/mut_fitness_volcano.pdf",p
 #selection coefficient
 ```{r}
 #1100 ncov inference
+# selection-nonsyn-observed.csv is the raw output of the epi-inf inference
+# (epi-covar workflow, Lee et al. 2025) and is NOT included in this
+# repository. The processed result is provided at
+# ../data/GISAID_260111/selection_coefficient/selection_nonsyn_observed.rds
+# (saved by this chunk below).
 nc_res<- fread("../data/GISAID_250706/ncov_inf/selection-nonsyn-observed.csv")
 nc_res$AAsub<-paste0(nc_res$protein,":",str_split_fixed(nc_res$`amino acid mutation`,">",2)[,1],nc_res$`amino acid number in protein`,str_split_fixed(nc_res$`amino acid mutation`,">",2)[,2])
 nc_res$AAsub<-gsub("-","del",nc_res$AAsub)
@@ -429,8 +437,10 @@ ggsave("../result/02Fitness_analysis/high_fit_stable_mut_ratio_piechart.pdf",p,w
 
 #dNdS
 ```{bash}
-#5130 
-cd /mnt/raid64/COVID19/Personal/lhkp/GISAID_250706/dN_dS
+# The GISAID multiple sequence alignment is NOT included in this repository
+# (download from https://www.gisaid.org/, registration required) and should
+# be placed at data/GISAID_260111/msa_0523/msa_0523.fasta.
+cd ../script
 python count_nm_sm_by_sequence_gene.py \
   --msa ../data/GISAID_260111/msa_0523/msa_0523.fasta \
   --features ../data/GISAID_260111/dN_dS/sarscov2_features.tsv \
@@ -573,9 +583,9 @@ final_dnds_results <- observed_counts %>%
   ) %>%
   select(Protein = gene, Length_bp, N_m, S_m, N_ref, S_ref, dN, dS, dN_dS_ratio) %>%
   arrange(desc(dN_dS_ratio))
-saveRDS(final_dnds_results,"/mnt/raid64/COVID19/Personal/lhkp/GISAID_250706/dN_dS/dNdS_omicron.rds")
+saveRDS(final_dnds_results,"../data/GISAID_260111/dN_dS/dNdS_omicron.rds")
 
-final_dnds_results<-readRDS("/mnt/raid64/COVID19/Personal/lhkp/GISAID_250706/dN_dS/dNdS_omicron.rds")
+final_dnds_results<-readRDS("../data/GISAID_260111/dN_dS/dNdS_omicron.rds")
 final_dnds_results_NSP<-final_dnds_results[grepl("^nsp",final_dnds_results$Protein),]
 final_dnds_results_NSP$Protein<-gsub("nsp","Nsp",final_dnds_results_NSP$Protein)
 

@@ -2,9 +2,14 @@
 
 set -e
 
-SCRIPT=/mnt/raid66/Personal_data/linghukepan/03proj/06COVID19/upload_version1/script/MIL_bootstrap_multi_trait_260714.py
-TRAIT_FILE=/mnt/raid66/Personal_data/linghukepan/03proj/06COVID19/upload_version1/data/clinical_phenotype_analysis/MIL/train/traits.txt
-OUT_DIR=/mnt/raid66/Personal_data/linghukepan/03proj/06COVID19/upload_version1/data/clinical_phenotype_analysis/MIL/train/multi_traits_results_260714_parallel
+# Resolve repository root relative to this script
+ROOT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
+
+SCRIPT=${ROOT_DIR}/script/MIL_bootstrap_multi_trait_260714.py
+GENO_FILE=${ROOT_DIR}/data/clinical_phenotype_analysis/MIL/prepeare/geno_feature.csv
+PHENO_FILE=${ROOT_DIR}/data/clinical_phenotype_analysis/MIL/prepeare/nor_pheno_by_Age_Gender_CCI.csv
+TRAIT_FILE=${ROOT_DIR}/data/clinical_phenotype_analysis/MIL/traits.txt
+OUT_DIR=${ROOT_DIR}/output/multi_traits_results
 LOG_DIR=${OUT_DIR}/logs
 
 mkdir -p ${LOG_DIR}
@@ -18,6 +23,8 @@ EPOCHS=150
 BASE_SEED=42
 R_THRESHOLD=0
 
+# For speed, Phase1 model weights are NOT saved by default; only Phase1 attention and prediction are saved.
+# To save Phase1 models, set SAVE_PHASE1_MODEL to 1, but this will significantly increase I/O and runtime.
 SAVE_PHASE1_MODEL=1
 SAVE_PHASE1_ATTENTION=1
 SAVE_PHASE1_PRED=1
@@ -41,6 +48,8 @@ while IFS= read -r trait || [[ -n "$trait" ]]; do
 
     CUDA_VISIBLE_DEVICES=${GPU_ID} python ${SCRIPT} \
         --trait "${trait}" \
+        --geno "${GENO_FILE}" \
+        --pheno "${PHENO_FILE}" \
         --output_dir "${OUT_DIR}" \
         --n_boot ${N_BOOT} \
         --n_full ${N_FULL} \
@@ -69,7 +78,7 @@ wait
 
 echo "All trait jobs finished."
 
-
+# Merge summaries of all traits
 python - <<EOF
 import os, glob
 import pandas as pd
