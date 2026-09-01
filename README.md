@@ -73,7 +73,6 @@ ViMCA-MIL/
 │   ├── run_MIL.sh                                         # Batch launcher for all traits + summary merging
 │   └── count_nm_sm_by_sequence_gene.py                    # Per-sequence/per-gene Nm & Sm counting (dN/dS)
 └── data/
-    ├── Table/                                             # Supplementary tables (Table S1–S8)
     ├── Chengdu_data/                                      # Local cohort lineage metadata
     ├── SARS_CoV_2_reference/                              # Reference genome & gene structure
     ├── clinical_phenotype_analysis/                       # Clinical phenotypes & MIL inputs
