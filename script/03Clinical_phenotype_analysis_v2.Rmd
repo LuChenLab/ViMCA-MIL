@@ -26,11 +26,6 @@ library(scales)
 library(tidyr)
 library(ggsci)
 library(Biostrings)
-library(GSEABase)
-library(eulerr)
-library(enrichplot)
-library(clusterProfiler)
-library(GseaVis)
 ```
 
 #Adjusted code
