@@ -1,4 +1,4 @@
-# ViMCA-MIL
+<img width="432" height="14" alt="image" src="https://github.com/user-attachments/assets/fc8207c3-564e-42e8-9b6c-15b082f1dd19" /># ViMCA-MIL
 
 **Vi**ral **M**utation–**C**linical **A**ssociation analysis based on a gated-attention **M**ultiple **I**nstance **L**earning model
 <img width="2126" height="616" alt="image" src="https://github.com/user-attachments/assets/09cec173-c381-4bc5-80ae-653dba06e56b" />
@@ -24,7 +24,7 @@ Briefly, the framework consists of four steps:
    is estimated with the [PyR0](https://github.com/broadinstitute/pyro) workflow on
    the UShER phylogeny, and transmission selection coefficients are inferred from
    regional genomic surveillance data following
-   [Lee *et al.*](https://www.nature.com/articles/s41467-024-55593-0).
+   [Lee *et al.*](https://github.com/bartonlab/paper-SARS-CoV-2-inference).
    EVEscape-derived fitness effects are additionally computed per protein.
 3. **Clinical phenotype analysis.** For a cohort of 490 patients with matched viral
    genomes and clinical records (78 blood routine, blood chemistry, immune cell and
@@ -39,11 +39,6 @@ Briefly, the framework consists of four steps:
    and the attention scores are used to prioritize mutations without requiring
    mutation-level labels. Robustness is assessed with 100 independent resampling
    runs followed by 10 full-data refittings to obtain mean attention scores.
-
-Using this framework, we identified high-frequency stable mutations in nonstructural
-proteins (Nsps), notably **Nsp1:S135R** and **Nsp13:R392C** emerged in Omicron,
-which are associated with serum TNF-α levels and were experimentally validated to
-enhance viral replication while attenuating pulmonary pathogenicity.
 
 </br>
 
@@ -114,11 +109,11 @@ Developed with `R 4.5.3`. Packages used by the Rmd scripts:
 
 | Category | Packages (version) |
 | --- | --- |
-| Data wrangling | data.table (1.18.2.1), dplyr (1.2.1), tidyr (1.3.2), purrr (1.2.2), stringr (1.6.0), magrittr (2.0.5), readr (2.2.0), readxl (1.4.5), openxlsx (4.2.8.1), broom (1.0.12), lubridate (1.9.5), scales (1.4.0) |
-| Statistics & modeling | caret (7.0.1), bestNormalize (1.9.2), binom (1.1.1.1), lessR (4.5.4), parallel (4.5.3) |
-| Visualization | ggplot2 (4.0.3), ggpubr (0.6.3), ggrepel (0.9.8), patchwork (1.3.2), cowplot (1.2.0), ggthemes (5.2.0), ggsci (5.0.0), RColorBrewer (1.1.3), circlize (0.4.18), ComplexHeatmap (2.26.1), eulerr (7.1.0) |
+| Data wrangling | data.table (1.18.2.1), dplyr (1.2.1), tidyr (1.3.2), purrr (1.2.2), stringr (1.6.0), magrittr (2.0.5), readxl (1.4.5), openxlsx (4.2.8.1), broom (1.0.12), lubridate (1.9.5), scales (1.4.0) |
+| Statistics & modeling | caret (7.0.1), bestNormalize (1.9.2), binom (1.1.1.1), parallel (4.5.3) |
+| Visualization | ggplot2 (4.0.3), ggpubr (0.6.3), ggrepel (0.9.8), patchwork (1.3.2), cowplot (1.2.0), ggthemes (5.2.0), ggsci (5.0.0), RColorBrewer (1.1.3), circlize (0.4.18), ComplexHeatmap (2.26.1) |
 | Parallel computing | future (1.70.0), future.apply (1.20.2) |
-| Bioconductor & enrichment | Biostrings (2.78.0), GSEABase (1.72.0), clusterProfiler (4.18.4), enrichplot (1.30.5), GseaVis (0.1.1) |
+| Bioconductor | Biostrings (2.78.0)  |
 | Sequence handling | seqinr (4.2.36) |
 
 External tools/workflows invoked by the analysis notebooks:
@@ -128,7 +123,7 @@ External tools/workflows invoked by the analysis notebooks:
 - [EVcouplings](https://github.com/debbiemarkslab/EVcouplings) — MSA construction
   for EVEscape fitness-effect scores (`evcouplings_runcfg` called in
   `03Clinical_phenotype_analysis_v2.Rmd`)
-- [epi-covar](https://www.nature.com/articles/s41467-024-55593-0) — transmission
+- [Transmission selection coefficients inference](https://github.com/bartonlab/paper-SARS-CoV-2-inference) — transmission
   selection coefficients
 
 Upstream sequencing preprocessing of the local cohort (not part of this
