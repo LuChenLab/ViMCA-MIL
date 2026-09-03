@@ -22,7 +22,6 @@ library(tidyr)
 library(purrr)
 library(broom)
 library(readr)
-library(eulerr)
 library(future.apply)
 library(future)
 library(circlize)
@@ -30,7 +29,6 @@ library(binom)
 library(readxl)
 library(RColorBrewer)
 library(ComplexHeatmap)
-library(lessR)
 ```
 
 #Chengdu
