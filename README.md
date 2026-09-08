@@ -127,8 +127,8 @@ External tools/workflows invoked by the analysis notebooks:
   selection coefficients
 
 Upstream sequencing preprocessing of the local cohort (not part of this
-repository) used [fastp](https://github.com/OpenGene/fastp) (v0.23.2),
-[bowtie2](https://github.com/BenLangmead/bowtie2) (v2.4.4) and
+repository) used [fastp](https://github.com/OpenGene/fastp) (v0.22.0),
+[bwa-mem2](https://github.com/bwa-mem2/bwa-mem2) (v2.2.1) and
 [Nextclade](https://clades.nextstrain.org/) for mutation calling and lineage
 assignment.
 
