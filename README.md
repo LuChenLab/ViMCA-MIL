@@ -1,7 +1,6 @@
-<img width="432" height="14" alt="image" src="https://github.com/user-attachments/assets/fc8207c3-564e-42e8-9b6c-15b082f1dd19" /># ViMCA-MIL
 
 **Vi**ral **M**utation–**C**linical **A**ssociation analysis based on a gated-attention **M**ultiple **I**nstance **L**earning model
-<img width="2126" height="616" alt="image" src="https://github.com/user-attachments/assets/09cec173-c381-4bc5-80ae-653dba06e56b" />
+<img width="2160" height="634" alt="image" src="https://github.com/user-attachments/assets/1a906228-ca27-48ee-98c6-575a4d55360d" />
 </br>
 
 ## What is ViMCA-MIL?
