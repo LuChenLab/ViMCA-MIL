@@ -1240,14 +1240,14 @@ plot_df <- mut_df %>%
   )
 
 feature_label <- c(
-  "R / R_A" = "Relative fitness",
+  "R / R_A" = "R/RA",
   "selection coefficient" = "Selection coefficient",
     "EVEscape" = "EVEscape",
-  "dN_dS" = "dN/dS",
-  "phastCons" = "PhastCons",
-  "phyloP" = "PhyloP",
-  "SIFT_Probability" = "SIFT impact",
-  "PROVEAN_Score" = "PROVEAN impact",
+  "dN_dS" = "dN/dS of host gene",
+  "phastCons" = "phastCons",
+  "phyloP" = "phyloP",
+  "SIFT_Probability" = "SIFT",
+  "PROVEAN_Score" = "PROVEAN",
   "Pathogenicity" = "Pathogenicity",
   "delta_DDG_Env" = "ΔΔG Env",
   "delta_DDG_Int" = "ΔΔG Int"
@@ -1255,9 +1255,9 @@ feature_label <- c(
 
 feature_group <- c(
   "R / R_A" = "Evolutionary effects",
-  "selection coefficient" = "Evolutionary effects",
-  "EVEscape" = "Evolutionary effects",
-  "dN_dS" = "Evolutionary effects",
+  "selection coefficient" = "Evolutionary impact",
+  "EVEscape" = "Evolutionary impact",
+  "dN_dS" = "Evolutionary impact",
   "phastCons" = "Conservation",
   "phyloP" = "Conservation",
   "SIFT_Probability" = "Functional impact",
@@ -1266,6 +1266,7 @@ feature_group <- c(
   "delta_DDG_Env" = "Protein stability",
   "delta_DDG_Int" = "Protein stability"
 )
+
 feature_group_df <- data.frame(
   feature = names(feature_group),
   feature_group = unname(feature_group),
