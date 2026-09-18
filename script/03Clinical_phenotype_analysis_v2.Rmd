@@ -1254,7 +1254,7 @@ feature_label <- c(
 )
 
 feature_group <- c(
-  "R / R_A" = "Evolutionary effects",
+  "R / R_A" = "Evolutionary impact",
   "selection coefficient" = "Evolutionary impact",
   "EVEscape" = "Evolutionary impact",
   "dN_dS" = "Evolutionary impact",
