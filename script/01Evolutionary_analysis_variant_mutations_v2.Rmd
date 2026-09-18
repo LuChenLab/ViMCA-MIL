@@ -59,7 +59,7 @@ variant_col <- c(
     "#FFFF99", "#B15928", "#8DD3C7", "#CAB2D6", "#FB8072",
     "#80B1D3", "#FDB462", "#B3DE69", "#FCCDE5",
     "#BC80BD", "#CCEBC5", "#FFED6F", "#7FC97F", "#542788", 
-    "#FDC086", "#FFFF99", "#386CB0", "#F0027F", "#BF5B17" 
+    "#FDC086", "#A6761D", "#386CB0", "#F0027F", "#BF5B17" 
 )
 names(variant_col)<-c("Other","A*","B","B.1","B.1.1","B.1.2","D.2","B.1.177*(EU1)","B.1.1.7(Alpha)",
                                                                                 "B.1.617.2*(Delta)","P.1*(Gamma)","BA.1*","BA.2*","BA.4*","BA.5*","BQ.1*",
@@ -217,7 +217,7 @@ gisaid_colors <- c(
     "#FFFF99", "#B15928", "#8DD3C7", "#CAB2D6", "#FB8072",
     "#80B1D3", "#FDB462", "#B3DE69", "#FCCDE5", # neutral colors
     "#BC80BD", "#CCEBC5", "#FFED6F", "#7FC97F", "#542788",
-    "#FDC086", "#FFFF99", "#386CB0", "#F0027F", "#BF5B17"
+    "#FDC086", "#A6761D", "#386CB0", "#F0027F", "#BF5B17"
 )
 
 gisaid_colors<-gisaid_colors[1:length(levels(cleaned_data_worldwide$cleaned_lineage))]
